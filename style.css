@@ -1,0 +1,203 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilo base do corpo */
+section.header img {
+  background-size: cover;
+}
+
+/* Estilo para a navegação */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #FCF7FB;
+  color: white;
+  z-index: 100;
+}
+
+.navbar .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #736CA2;
+  letter-spacing: 6px;
+  margin: 10px;
+}
+
+/* Botão hambúrguer */
+.navbar .hamburger {
+  background-color: #FCF7FB;
+  font-size: 24px;
+  border: none;
+  color: #1E1935;
+  cursor: pointer;
+  display: none;
+  /* Esconde o botão por padrão */
+  position: relative;
+  z-index: 15;
+  transition: transform 0.3s ease;
+}
+
+/* Linhas do botão hambúrguer */
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #1E1935;
+  margin: 5px auto;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Transformações do botão quando ativo */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Estilo para os links do menu */
+.nav-links {
+  color: #736CA2;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  /* Por padrão, os links ficam na horizontal */
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  z-index: 10;
+}
+
+.nav-links.active {
+  transform: translateY(0);
+  /* Move para dentro da tela */
+  opacity: 1;
+  /* Torna visível */
+  pointer-events: all;
+  /* Permite cliques */
+}
+
+.nav-links li {
+  margin: 10px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  margin-left: 10px;
+  color: #736CA2;
+  font-size: 24px;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #0099ff;
+  /* Cor de destaque */
+}
+
+/* Estilo para a imagem do cabeçalho */
+.header {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* Ocupa toda a altura da viewport */
+  overflow: hidden;
+}
+
+.header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Garante que a imagem preencha o espaço */
+}
+
+/* Para telas pequenas, no modo hambúrguer */
+@media (max-width: 768px) {
+  .navbar .hamburger {
+    display: block;
+    /* Exibe o botão de hambúrguer em telas pequenas */
+    margin: 5px;
+  }
+
+  .navbar .logo {
+    margin: 5px;
+  }
+
+  /* Menu deve ficar fora da tela inicialmente */
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    /* Menu se torna vertical */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Fundo preto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
+    transform: translateY(-100%);
+    /* Inicialmente o menu estará fora da tela */
+    transition: transform 0.5s ease, opacity 0.3s ease;
+    opacity: 0;
+    /* Inicialmente invisível */
+    pointer-events: none;
+    /* Evita cliques quando invisível */
+  }
+
+  /* Quando o menu está ativo */
+  .nav-links.active {
+    transform: translateY(0);
+    /* Desliza o menu para baixo */
+    opacity: 1;
+    pointer-events: all;
+    /* Permite cliques quando visível */
+  }
+}
+
+/* Para telas médias (768px a 1024px), o menu deve ser em estilo vertical */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .navbar .hamburger {
+    display: none;
+    /* Esconde o botão de hambúrguer */
+  }
+
+  .nav-links {
+    display: flex;
+    /* Mantém o menu horizontal */
+    flex-direction: row;
+  }
+}
+
+/* Para telas grandes (acima de 1024px), o menu volta a ser horizontal */
+@media (min-width: 1025px) {
+  .navbar .hamburger {
+    display: none;
+    /* Esconde o botão de hambúrguer */
+  }
+
+  .nav-links {
+    display: flex;
+    /* Mantém o menu horizontal */
+    flex-direction: row;
+  }
+}
